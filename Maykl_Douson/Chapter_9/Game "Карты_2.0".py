@@ -18,7 +18,7 @@ class Hand(object):
             self.cards = []
     def __str__ (self):
         if self.cards:
-            rep = ""
+            rep = " "
             for card in self.cards:
                 rep += str(card) + " "
         else:
@@ -36,13 +36,17 @@ class Deck(Hand):
     """ Колода игральных карт. """
     def populate(self): # заполнение 
         self.cards = []
+        counter = 0 # в вожу счётчик
         for suit in Card.SUIТS:
-            for rank in Card.RANKS: 
+            for rank in Card.RANKS:
                 self.add(Card(rank, suit))
+                counter += 1
+                if counter % 13 == 0: # как только счётчик делит число 13 без остатка
+                    self.add('\n')    # вывод переносит на новую строку
     def shuffle(self): # перетосовать
         import random 
         random.shuffle(self.cards) 
-    def deal(self, hands, per_hand = 1): #
+    def deal(self, hands, per_hand = 1): # взаимодействие с руками игрока
         for rounds in range(per_hand): 
             for hand in hands: 
                 if self.cards: 
@@ -68,7 +72,7 @@ hands = [my_hand, your_hand] # руки
 
 deck1.deal(hands, per_hand = 5) # раздача в каждую руку по пять карт
 
-print("\nМне и вам на руки раздано 5 карт.")
+print("Мне и вам на руки раздано 5 карт.")
 print("У меня на руках:")
 print(my_hand)
 print("У вас на руках:")
@@ -77,7 +81,7 @@ print("Осталось в колоде:")
 print(deck1)
 
 deck1.clear() # Очистка колоды
-print("\nКолода очищена.")
+print("Колода очищена.")
 
 print("Вот как она выглядит теперь:", deck1)
 
