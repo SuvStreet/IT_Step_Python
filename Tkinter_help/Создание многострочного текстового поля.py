@@ -2,6 +2,7 @@ from tkinter import *  # импортирование библиотеки tkint
 
 root = Tk() # создание окна
 root.title # Многострочное текстовое поле
+
 tex = Text(root,
            width = 20, # ширина поля отоброжаемых символов
            height = 5, # высота поля
